@@ -1,20 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import Nav from "./components/Nav";
+import AppLoading from "expo-app-loading";
+import { useFonts } from "expo-font";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+	let fontloaded = useFonts({ "branding-sf": require("./assets/fonts/branding-sf-cmp-medium-italic.ttf") });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+	return !fontloaded ? (
+		<AppLoading />
+	) : (
+		<NavigationContainer>
+			<Nav />
+		</NavigationContainer>
+	);
+}
